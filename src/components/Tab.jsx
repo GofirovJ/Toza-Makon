@@ -18,7 +18,7 @@ const Tab = ({ t }) => {
       .then((res) => {
         dispatch(getCategories(res?.data));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err?.message));
   }, []);
 
   const handleClickTab = (id) => {
@@ -37,7 +37,7 @@ const Tab = ({ t }) => {
           >
             <p>{t("p1_text46")}</p>
             {active === null && (
-              <span className="w-6 h-6  flex items-center justify-center text-xs rounded-full bg-white text-zinc-500">
+              <span className="w-8 h-8  flex items-center justify-center text-xs rounded-full bg-white text-zinc-500">
                 {categories?.pageInfo?.totalCount}
               </span>
             )}
@@ -57,11 +57,11 @@ const Tab = ({ t }) => {
                   ? item?.name_ru
                   : item?.name_uz}
               </p>
-              {/* {active === item?.id && (
+              {active === item?.id && (
                 <span className="w-8 h-8 flex items-center justify-center text-sm rounded-full bg-white text-zinc-500">
-                  {item?.total ? `` : `0`}
+                  {item?.servicescount ? item?.servicescount : `0`}
                 </span>
-              )} */}
+              )}
             </div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavItem from "./NavItem";
 import {
   IconArrowDown,
@@ -11,18 +11,42 @@ import {
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 const Navbar = () => {
+  const router = useRouter();
   const { t } = useTranslation();
-
+  const [isOpenLang, setIsOpenLang] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeLang, setActiveLang] = useState("uz");
   const [drop, setDrop] = useState(false);
   const { theme, setTheme } = useTheme();
-
+  const lang = [
+    {
+      id: "uz",
+      key: "Uz",
+    },
+    {
+      id: "en",
+      key: "En",
+    },
+    {
+      id: "ru",
+      key: "Ru",
+    },
+  ];
   const handleClose = () => {
     setIsOpen(false);
     setDrop(false);
   };
+  const handleTogleLink = () => {
+    if (isOpenLang) {
+      setIsOpenLang(false);
+    } else {
+      setIsOpenLang(true);
+    }
+  };
+
   return (
     <nav>
       <div className="bg-c-text">
@@ -77,12 +101,31 @@ const Navbar = () => {
             <span className="dark:hidden">{IconSun}</span>
             <span className="dark:block hidden">{IconMoon}</span>
           </button>
-          <button
+          <div
+            onClick={() => setIsOpenLang(!isOpenLang)}
             type="button"
-            className="bg-primary flex items-center justify-center w-12 h-12 rounded-xl text-base font-semibold active:shadow-[0_0_15px_rgb(0,0,0)] shadow-primary active:shadow-primary transition-all duration-200"
+            className="uppercase cursor-pointer relative bg-primary flex items-center justify-center w-12 h-12 rounded-xl text-base font-semibold active:shadow-[0_0_15px_rgb(0,0,0)] shadow-primary active:shadow-primary transition-all duration-200"
           >
-            Uz
-          </button>
+            {activeLang}
+
+            {isOpenLang && (
+              <div className="absolute -bottom-[90px] right-0 z-50 flex w-12 flex-col items-center justify-between rounded-lg border border-solid border-gray-200 bg-primary shadow-md">
+                {lang
+                  ?.filter((el) => el.id !== activeLang)
+                  ?.map((item) => (
+                    <Link
+                      href={router.asPath}
+                      locale={item?.id}
+                      key={item.id}
+                      className="flex w-full cursor-pointer items-center justify-center py-2"
+                      onClick={() => setActiveLang(item?.id)}
+                    >
+                      {item.key}
+                    </Link>
+                  ))}
+              </div>
+            )}
+          </div>
           <Link
             href={`#app`}
             type="button"
@@ -103,6 +146,8 @@ const Navbar = () => {
           )}
         </button>
       </div>
+
+      {/* Mobile **************** */}
       <div
         className={`${
           isOpen ? `min-h-[240px] block` : `h-0 hidden`
@@ -131,7 +176,7 @@ const Navbar = () => {
         <Link href="/about-us" onClick={() => setIsOpen(false)}>
           {t("p1_text5")}
         </Link>
-        <div className="flex items-center justify-between mt-2 gap-5">
+        <div className="flex flex-wrap pr-4 items-center justify-between mt-2 gap-5">
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             type="button"
@@ -141,12 +186,25 @@ const Navbar = () => {
             <span className="dark:hidden">{IconSun}</span>
             <span className="dark:block hidden">{IconMoon}</span>
           </button>
-          <button
+          {/* <button
             type="button"
             className="bg-primary flex items-center justify-center w-12 h-12 rounded-xl text-base font-semibold active:shadow-[0_0_15px_rgb(0,0,0)] shadow-primary active:shadow-primary transition-all duration-200"
           >
             Uz
-          </button>
+          </button> */}
+          <div className="flex gap-10 text-base">
+            {lang?.map((item) => (
+              <Link
+                href={router.asPath}
+                locale={item?.id}
+                key={item.id}
+                className="flex w-full cursor-pointer items-center justify-center py-2"
+                onClick={() => setActiveLang(item?.id)}
+              >
+                {item.key}
+              </Link>
+            ))}
+          </div>
           <Link
             onClick={() => setIsOpen(false)}
             href={`#app`}

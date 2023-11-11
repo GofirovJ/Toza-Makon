@@ -12,30 +12,24 @@ const Modal = ({ t, setIsOpenModal }) => {
   const [msg, setMsg] = useState(false);
   const id = useSelector((state) => state.data.serviceId);
   const handleSubmit = () => {
-    if (id) {
-      axios
-        .post(`${process.env.NEXT_BASE_URL}/customer-orders`, {
-          phone,
-          name,
-          service_id: id,
-          address: "",
-        })
-        .then((res) => {
-          console.log(res);
-          setName("");
-          setPhone("");
-          setMsg(true);
-          setTimeout(() => {
-            setMsg(false);
-            setIsOpenModal(false);
-            dispatch(serviceId(null));
-          }, 3000);
-        })
-        .catch((err) => alert(err?.message));
-    } else {
-      console.log("aloqa malumotlari");
-      setIsOpenModal(false);
-    }
+    axios
+      .post(`${process.env.NEXT_BASE_URL}/customer-orders`, {
+        phone,
+        name,
+        service_id: id ? id : 0,
+        address: "",
+      })
+      .then((res) => {
+        setName("");
+        setPhone("");
+        setMsg(true);
+        setTimeout(() => {
+          setMsg(false);
+          setIsOpenModal(false);
+          dispatch(serviceId(null));
+        }, 3000);
+      })
+      .catch((err) => alert(err?.message));
   };
   const handleCloseModal = () => {
     dispatch(serviceId(null));

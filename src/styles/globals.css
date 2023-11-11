@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*::after,
+*::before,
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #fff;
+  -webkit-tap-highlight-color: transparent;
 }
-
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

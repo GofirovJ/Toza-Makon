@@ -11,13 +11,17 @@ const BaseText = ({ base, heading, description, usedFooter }) => {
         <p className="text-center text-base lg:!text-2xl font-semibold">
           {base}
         </p>
-        <h3 className="text-center text-gray-800 lg:text-[40px] sm:text-2xl text-lg font-bold">
+        <h3
+          className={`text-center text-gray-800 ${
+            usedFooter ? `` : `dark:text-white`
+          } lg:text-[40px] sm:text-2xl text-lg font-bold`}
+        >
           {heading}
         </h3>
         <p
           className={`${
-            usedFooter ? `w-1/2` : `xl:w-1/3`
-          } text-center text-zinc-500 font-medium `}
+            usedFooter ? `xl:w-1/2` : `xl:w-1/3 dark:text-white`
+          } text-center text-zinc-500  font-medium `}
         >
           {description}
         </p>

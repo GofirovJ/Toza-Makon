@@ -9,7 +9,7 @@ const Footer = () => {
     <footer>
       <section className="bg-primary py-14">
         <div className="container mx-auto">
-          <div className="flex flex-col justify-between items-center w-4/5 mx-auto bg-white rounded-[32px] pb-14">
+          <div className="flex flex-col justify-between items-center lg:w-4/5 w-[90%] mx-auto bg-white rounded-[32px] pb-14">
             <BaseText
               usedFooter={true}
               base="Biz uchun"

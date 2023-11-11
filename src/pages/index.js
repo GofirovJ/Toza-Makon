@@ -43,6 +43,9 @@ export default function Home() {
         heading="Toza va sog’lom muhit yaratamiz"
         title="Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz."
         video={false}
+        statistics={[]}
+        service={false}
+        breadCrumb=""
       />
       <BaseText
         usedFooter={false}

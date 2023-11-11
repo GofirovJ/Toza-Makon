@@ -1,5 +1,7 @@
 import React from "react";
 import OpenModalButton from "./OpenModalButton";
+import Link from "next/link";
+import { IconArrowRight } from "./icons";
 
 const Header = ({
   mainText,
@@ -8,18 +10,44 @@ const Header = ({
   video,
   videoSource,
   statistics,
+  service,
+  breadCrumb,
 }) => {
   return (
     <div className="bg-primary ">
+      {breadCrumb && (
+        <div className="lg:block hidden container mx-auto 2xl:px-20 xl:px-10 pt-10 px-4">
+          <div className="flex gap-2">
+            <Link href="/" className="opacity-50 text-black font-semibold ">
+              Bosh Sahifa
+            </Link>
+            {IconArrowRight}
+            <p className="text-gray-800 font-semibold">
+              {breadCrumb === "/service/cleaning"
+                ? "Xizmatlar"
+                : breadCrumb === "/blog"
+                ? "Blog"
+                : "Biz haqimizda"}
+            </p>
+          </div>
+        </div>
+      )}
       {!video ? (
         <div
           className={`container mx-auto 2xl:px-20 xl:px-10 lg:py-28 py-8 px-4  bg-[url('/head.png')] bg-no-repeat lg:bg-right bg-center bg-contain`}
         >
-          <RenderComponent heading={heading} title={title} />
+          <RenderComponent
+            mainText={mainText}
+            heading={heading}
+            title={title}
+            service={service}
+            video={video}
+            statistics={statistics}
+          />
         </div>
       ) : (
         <div
-          className={`container mx-auto 2xl:px-20 xl:px-10 lg:py-28 py-8 px-4 flex justify-between items-center`}
+          className={`container mx-auto 2xl:px-20 xl:px-10 lg:py-28 py-8 px-4 lg:flex justify-between items-center`}
         >
           <RenderComponent
             mainText={mainText}
@@ -27,15 +55,14 @@ const Header = ({
             title={title}
             statistics={statistics}
             video={video}
+            service={service}
           />
-          <div>
+          <div className="lg:m-0 my-4">
             <iframe
-              className="rounded-[32px]"
-              width="560"
-              height="315"
+              className="lg:w-[560px] w-full lg:h-[315px] sm:h-[350px] h-[250px] rounded-[32px]"
               src={videoSource}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
           </div>
         </div>
@@ -50,23 +77,23 @@ const RenderComponent = ({
   mainText,
   heading,
   title,
-  source,
   video,
   statistics,
+  service,
 }) => (
   <div>
-    <p class="text-base lg:!text-2xl font-semibold">{mainText}</p>
+    <p className="text-base lg:!text-2xl font-semibold">{mainText}</p>
     <h1
-      class={`${
+      className={`${
         video ? `lg:w-4/5` : `lg:w-1/2`
-      } text-c-text xl:text-[56px] lg:text-5xl text-xl font-bold !leading-[72px] my-4`}
+      } text-c-text xl:text-[56px] lg:text-5xl text-xl font-bold !leading-[72px] lg:my-4`}
     >
       {heading}
     </h1>
     <p
-      class={`${
+      className={`${
         video ? `lg:w-3/5` : `lg:w-1/3`
-      } text-c2-text text-base font-medium my-6`}
+      } text-c2-text text-base font-medium lg:my-6`}
     >
       {title}
     </p>
@@ -89,15 +116,21 @@ const RenderComponent = ({
           </p>
         </div>
       </div>
+    ) : service ? (
+      <div className="flex gap-6 mt-10">
+        <OpenModalButton text="Buyurtma qilish" />
+        <OpenModalButton text="Konsultatsiya olish" color="none" />
+      </div>
     ) : (
       <div className="flex gap-6 mt-10">
         <OpenModalButton text="Bog’lanish" />
-        <button
+        <Link
+          href={"/services/cleaning"}
           type="button"
-          className="flex items-center justify-center rounded-xl border border-base  text-sm bg-primary lg:px-5 px-4 lg:py-3 py-2.5   font-semibold transition-all duration-200"
+          className="dark:text-darkb cursor-pointer flex items-center justify-center rounded-xl border border-base  text-sm bg-primary lg:px-5 px-4 lg:py-3 py-2.5   font-semibold transition-all duration-200"
         >
           Bizning xizmatlar
-        </button>
+        </Link>
       </div>
     )}
   </div>

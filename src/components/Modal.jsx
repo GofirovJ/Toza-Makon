@@ -5,7 +5,7 @@ const Modal = ({ setIsOpenModal }) => {
   return (
     <div className="z-50 fixed top-0 left-0 w-full h-screen bg-black bg-opacity-30 backdrop-blur-[55px]">
       <div className="container h-full mx-auto flex justify-center items-center">
-        <div className="w-[30%] bg-white rounded-[32px] p-8 relative">
+        <div className="2xl:w-[30%] xl:w-[35%] bg-white rounded-[32px] p-8 relative sm:m-0 mx-4">
           <button
             onClick={() => setIsOpenModal(false)}
             className="absolute top-6 right-6"
@@ -26,7 +26,7 @@ const Modal = ({ setIsOpenModal }) => {
             <span>{IconProfile}</span>
             <input
               id="name"
-              className="flex-1 outline-none h-full"
+              className="bg-transparent flex-1 outline-none h-full"
               type="text"
               placeholder="Ismingiz"
             />
@@ -38,7 +38,7 @@ const Modal = ({ setIsOpenModal }) => {
             <span>{IconCallDark}</span>
             <input
               id="phone"
-              className="flex-1 outline-none h-full"
+              className="bg-transparent flex-1 outline-none h-full"
               type="text"
               placeholder="Telefon raqamingiz"
             />

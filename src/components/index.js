@@ -9,6 +9,7 @@ import ReasonBoxes from "./ReasonBoxes";
 import StickyChat from "./StickyChat";
 import Clients from "./Clients";
 import Companies from "./Companies";
+import Tab from "./Tab";
 
 export {
   BaseText,
@@ -22,4 +23,5 @@ export {
   StickyChat,
   Clients,
   Companies,
+  Tab,
 };

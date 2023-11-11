@@ -16,6 +16,7 @@ const AboutUs = () => {
         heading="Biz haqimizda"
         title="Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz."
         video={true}
+        service={false}
         videoSource="https://www.youtube.com/embed/pTcQTifb6lI?si=yJFiMA6qwaA_jUJH"
         statistics={[
           {
@@ -27,6 +28,7 @@ const AboutUs = () => {
             value: 10,
           },
         ]}
+        breadCrumb="/about-us"
       />
       <BaseText
         usedFooter={false}

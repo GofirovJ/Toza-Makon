@@ -5,7 +5,7 @@ import Link from "next/link";
 const NavItem = () => {
   const parag = "text-sm text-white font-medium";
   return (
-    <div class="xl:h-14 p-4 xl:p-0 relative flex xl:flex-row flex-col items-center xl:justify-between">
+    <div className="xl:h-14 p-4 xl:p-0 relative flex xl:flex-row flex-col items-center xl:justify-between">
       <div className="2xl:w-3/5 xl:w-4/5">
         <div className="xl:flex items-center gap-3">
           <span className="xl:block hidden">{IconCall}</span>

@@ -4,9 +4,9 @@ import { IconChat, IconClose, IconSend } from "./icons";
 const StickyChat = () => {
   const [toggle, setToggle] = useState(false);
   return (
-    <div className="sticky flex flex-col items-end justify-end px-20 bottom-20 right-0">
+    <div className="sticky flex flex-col items-end justify-end sm:px-20 px-6 bottom-20 right-0">
       {toggle && (
-        <div className="w-1/3 bg-white rounded-[32px] p-8 mb-5 shadow-[0px_30px_30px] shadow-[rgba(0,0,0,0.2)] transition-all duration-200">
+        <div className="xl:w-1/3 lg:w-1/2 md:w-3/5 sm:w-3/4 w-full bg-white rounded-[32px] sm:p-8 p-4 mb-5 shadow-[0px_30px_30px] shadow-[rgba(0,0,0,0.2)] transition-all duration-200">
           <p className="text-gray-800 text-2xl font-semibold">Chat</p>
           <p className="text-c2-text font-medium my-2">
             Bizga qandaydir savolingiz bormi?
@@ -14,11 +14,11 @@ const StickyChat = () => {
           <div className="w-full h-[1px] bg-zinc-300 my-4" />
           <div className="flex gap-3 items-center justify-around">
             <input
-              className="flex-1 rounded-2xl border border-neutral-200 px-3 h-14"
+              className="bg-transparent flex-1 rounded-2xl border border-neutral-200 px-3 sm:h-14 h-12"
               type="text"
               placeholder="Yozishni boshlash"
             />
-            <button className="w-14 h-14 bg-base rounded-xl flex items-center justify-center transition-all duration-100 active:scale-90">
+            <button className="w-14 sm:h-14 h-12 bg-base rounded-xl flex items-center justify-center transition-all duration-100 active:scale-90">
               {IconSend}
             </button>
           </div>

@@ -127,7 +127,7 @@ const RenderComponent = ({
         <Link
           href={"/services/cleaning"}
           type="button"
-          className="dark:text-darkb cursor-pointer flex items-center justify-center rounded-xl border border-base  text-sm bg-primary lg:px-5 px-4 lg:py-3 py-2.5   font-semibold transition-all duration-200"
+          className="dark:text-darkb cursor-pointer flex items-center justify-center rounded-xl border border-base text-sm bg-primary lg:px-5 px-4 lg:py-3 py-2.5   font-semibold transition-all duration-200"
         >
           Bizning xizmatlar
         </Link>

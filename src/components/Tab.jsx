@@ -1,80 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IconSearch } from "./icons";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, tabId } from "../store/storeSlice";
 
 const Tab = () => {
-  const [active, setActive] = useState("all");
-  const tabs = [
-    {
-      id: 1,
-      title: "Tozalash",
-      total: 12,
-    },
-    {
-      id: 2,
-      title: "Dizinfeksiya",
-      total: 5,
-    },
-    {
-      id: 3,
-      title: "Yuvish",
-      total: 11,
-    },
-    {
-      id: 4,
-      title: "Oshxona",
-      total: 23,
-    },
-    {
-      id: 5,
-      title: "Uy va ofis",
-      total: 12,
-    },
-    {
-      id: 6,
-      title: "Bog’ va yashil maydonlar",
-      total: 3,
-    },
-    {
-      id: 7,
-      title: "Boshqa",
-      total: 0,
-    },
-  ];
-  const sumOfTotals = tabs.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.total,
-    0
-  );
+  const dispatch = useDispatch();
+  const [active, setActive] = useState(null);
+  const categories = useSelector((state) => state.data.categories);
+  useEffect(() => {
+    axios
+      .get(
+        `${process.env.NEXT_BASE_URL}/services-categories?page[limit]=500&page[offset]=0`
+      )
+      .then((res) => {
+        dispatch(getCategories(res?.data));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleClickTab = (id) => {
+    setActive(id);
+    dispatch(tabId(id));
+  };
   return (
     <div className="container mx-auto lg:px-28 py-4 xl:my-10">
       <div className="bg-primary rounded-3xl px-4 md:py-1 py-2 mx-10 flex md:flex-row flex-col-reverse gap-4 justify-between items-center">
         <div className="w-full items-center flex gap-4 overflow-x-scroll pb-1">
           <div
-            onClick={() => setActive("all")}
+            onClick={() => handleClickTab(null)}
             className={`${
-              active === "all" ? `bg-base` : `text-zinc-500`
+              active === null ? `bg-base` : `text-zinc-500`
             } cursor-pointer rounded-2xl text-white flex gap-2 items-center justify-center py-3 min-w-[140px] font-medium`}
           >
             <p>Barchasi</p>
-            {active === "all" && (
-              <span className="w-8 h-8 flex items-center justify-center text-sm rounded-full bg-white text-zinc-500">
-                {sumOfTotals}
+            {active === null && (
+              <span className="w-6 h-6  flex items-center justify-center text-xs rounded-full bg-white text-zinc-500">
+                {categories?.pageInfo?.totalCount}
               </span>
             )}
           </div>
-          {tabs?.map((item) => (
+          {categories?.entities?.map((item) => (
             <div
-              onClick={() => setActive(item?.title)}
+              onClick={() => handleClickTab(item?.id)}
               key={item?.id}
               className={`${
-                active === item?.title ? `text-white bg-base` : `text-zinc-500`
+                active === item?.id ? `text-white bg-base` : `text-zinc-500`
               }  px-4 font-medium cursor-pointer  rounded-2xl flex gap-2 items-center justify-center py-3`}
             >
-              <p className="min-w-max">{item?.title}</p>
-              {active === item?.title && (
+              <p className="min-w-max">{item?.name_uz}</p>
+              {/* {active === item?.id && (
                 <span className="w-8 h-8 flex items-center justify-center text-sm rounded-full bg-white text-zinc-500">
-                  {item?.total}
+                  {item?.total ? `` : `0`}
                 </span>
-              )}
+              )} */}
             </div>
           ))}
         </div>

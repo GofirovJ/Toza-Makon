@@ -30,7 +30,7 @@ const StickyChat = () => {
         className={`w-12 h-12 ${
           toggle
             ? `bg-white  border border-neutral-200`
-            : `bg-base shadow-[10px_14px_45px] shadow-base`
+            : `bg-base shadow-[10px_15px_65px] shadow-base`
         } flex justify-center items-center rounded-full  active:scale-90 transition-all duration-100`}
       >
         {toggle ? IconClose : IconChat}

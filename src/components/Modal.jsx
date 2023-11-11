@@ -8,6 +8,7 @@ const Modal = ({ t, setIsOpenModal }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
+  const [adress, setAdress] = useState("");
   const [phone, setPhone] = useState("");
   const [msg, setMsg] = useState(false);
   const id = useSelector((state) => state.data.serviceId);
@@ -17,7 +18,7 @@ const Modal = ({ t, setIsOpenModal }) => {
         phone,
         name,
         service_id: id ? id : 0,
-        address: "",
+        address: adress,
       })
       .then((res) => {
         setName("");
@@ -57,7 +58,7 @@ const Modal = ({ t, setIsOpenModal }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               id="name"
-              className="bg-transparent flex-1 outline-none h-full"
+              className="bg-transparent flex-1 outline-none h-full text-gray-800"
               type="text"
               placeholder={t("p1_text31")}
             />
@@ -71,9 +72,23 @@ const Modal = ({ t, setIsOpenModal }) => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               id="phone"
-              className="bg-transparent flex-1 outline-none h-full"
+              className="bg-transparent flex-1 outline-none h-full text-gray-800"
               type="text"
               placeholder={t("p1_text32")}
+            />
+          </label>
+          <label
+            htmlFor="adress"
+            className="w-full rounded-2xl border  border-neutral-200 px-3 h-14 flex my-4 items-center gap-3"
+          >
+            <span>{IconCallDark}</span>
+            <input
+              value={adress}
+              onChange={(e) => setAdress(e.target.value)}
+              id="adress"
+              className="bg-transparent flex-1 outline-none h-full text-gray-800"
+              type="text"
+              placeholder={t("p1_text56")}
             />
           </label>
           {msg && (
@@ -82,11 +97,11 @@ const Modal = ({ t, setIsOpenModal }) => {
             </p>
           )}
           <button
-            disabled={name && phone?.length >= 9 ? false : true}
+            disabled={name && adress && phone?.length >= 9 ? false : true}
             onClick={handleSubmit}
             type="button"
             className={`${
-              name && phone?.length >= 9
+              name && adress && phone?.length >= 9
                 ? `cursor-pointer opacity-100 active:scale-90 active:shadow-base`
                 : `cursor-not-allowed opacity-30`
             } w-full flex items-center justify-center rounded-xl text-white bg-base text-sm lg:px-5 px-4 lg:py-3 py-2.5 shadow-[0_5px_15px_rgb(0,0,0)]  shadow-[rgba(15,195,109,0.5)] font-semibold transition-all duration-200`}

@@ -14,7 +14,7 @@ const StickyChat = () => {
           <div className="w-full h-[1px] bg-zinc-300 my-4" />
           <div className="flex gap-3 items-center justify-around">
             <input
-              className="bg-transparent flex-1 rounded-2xl border border-neutral-200 px-3 sm:h-14 h-12"
+              className="bg-transparent flex-1 rounded-2xl border border-neutral-200 px-3 sm:h-14 h-12 text-gray-800"
               type="text"
               placeholder={t("p1_text35")}
             />

@@ -74,7 +74,7 @@ const Tab = ({ t }) => {
             <span>{IconSearch}</span>
             <input
               id="name"
-              className="flex-1 outline-none h-full bg-transparent"
+              className="flex-1 outline-none h-full bg-transparent text-gray-800"
               type="search"
               placeholder={t("p1_text45")}
             />

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
 
-const OpenModalButton = ({ text, color }) => {
+const OpenModalButton = ({ t, text, color }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   return (
     <>
@@ -16,7 +16,7 @@ const OpenModalButton = ({ text, color }) => {
       >
         {text}
       </button>
-      {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal && <Modal t={t} setIsOpenModal={setIsOpenModal} />}
     </>
   );
 };

@@ -1,5 +1,6 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
 import {
   Header,
   ReasonBoxes,
@@ -9,6 +10,7 @@ import {
   Clients,
   Companies,
 } from "../components";
+import { useTranslation } from "next-i18next";
 
 const inter = Inter({ subsets: ["latin"] });
 const data = [
@@ -34,49 +36,61 @@ const data = [
       "Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz.",
   },
 ];
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 
 export default function Home() {
+  const { t } = useTranslation();
   return (
     <main>
       <Header
-        mainText="Biz siz uchun"
-        heading="Toza va sog’lom muhit yaratamiz"
-        title="Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz."
+        t={t}
+        mainText={t("p1_text7")}
+        heading={t("p1_text8")}
+        title={t("p1_text9")}
         video={false}
         statistics={[]}
         service={false}
         breadCrumb=""
       />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Nima uchun"
-        heading="Bizni tanlashingiz shart"
-        description="Xizmatlarimizdan foydalanishda quyidagi qulayliklarga va imkoniyatlarga
-        ega bo’lasiz"
+        base={t("p1_text12")}
+        heading={t("p1_text13")}
+        description={t("p1_text14")}
       />
-      <ReasonBoxes />
+      <ReasonBoxes t={t} />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Biz siz uchun"
-        heading="Nimalarni taklif qilamiz"
-        description="Biz sizning uyingiz, ofisingiz tozaligi va farovonligi uchun quyidagi xizmatlarni taklif qilamiz"
+        base={t("p1_text7")}
+        heading={t("p1_text18")}
+        description={t("p1_text9")}
       />
-      <Card data={data} />
-      <PhoneBanner />
+      <Card t={t} data={data} />
+      <PhoneBanner t={t} />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Biz haqimizda"
-        heading="Mijozlar nima deydi"
+        base={t("p1_text5")}
+        heading={t("p1_text22")}
         description=""
       />
-      <Clients />
+      <Clients t={t} />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Biz bilan ishlovchi"
-        heading="Hamkor kompaniyalar"
+        base={t("p1_text23")}
+        heading={t("p1_text24")}
         description=""
       />
-      <Companies />
+      <Companies t={t} />
     </main>
   );
 }

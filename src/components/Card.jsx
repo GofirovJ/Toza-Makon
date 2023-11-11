@@ -5,8 +5,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OpenModalButton from "./OpenModalButton";
 import Modal from "./Modal";
+import { useRouter } from "next/router";
 
-const Card = () => {
+const Card = ({ t }) => {
+  const { locale } = useRouter();
+
   const dispatch = useDispatch();
   const services = useSelector((state) => state.data.services);
   const tabId = useSelector((state) => state.data.tabId);
@@ -54,26 +57,34 @@ const Card = () => {
               />
               <div className="my-4 w-full">
                 <h4 className="text-gray-800 text-lg font-bold my-3">
-                  {item?.name_uz}
+                  {locale === "en"
+                    ? item?.name_en
+                    : locale === "ru"
+                    ? item?.name_ru
+                    : item?.name_uz}
                 </h4>
-                <p className="text-zinc-500 text-sm">{item?.description_uz}</p>
+                <p className="text-zinc-500 text-sm">
+                  {locale === "en"
+                    ? item?.description_en
+                    : locale === "ru"
+                    ? item?.description_ru
+                    : item?.description_uz}
+                </p>
               </div>
               <button
                 onClick={() => handleClick(item?.id)}
                 className="cursor-pointer w-full py-3 rounded-xl font-semibold text-base hover:text-white hover:bg-base border border-base hover:shadow-[0_5px_15px_rgb(0,0,0)] hover:shadow-[rgba(15,195,109,0.5)] justify-center items-center transition-all duration-200"
               >
                 {" "}
-                Batafsil
+                {t("p1_text19")}
               </button>
             </div>
           ))
         ) : (
-          <p className="text-gray-800 font-medium">
-            Hech qanday xizmat turi topilmadi
-          </p>
+          <p className="text-gray-800 font-medium">{t("p1_text51")}</p>
         )}
       </div>
-      {isOpenModal && <Modal setIsOpenModal={setIsOpenModal} />}
+      {isOpenModal && <Modal t={t} setIsOpenModal={setIsOpenModal} />}
     </div>
   );
 };

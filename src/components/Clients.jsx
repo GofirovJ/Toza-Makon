@@ -1,7 +1,7 @@
 import React from "react";
 import { IconQuote, IconStar } from "./icons";
 
-const Clients = () => {
+const Clients = ({ t }) => {
   return (
     <div className="container mx-auto xl:px-28  px-4 lg:py-10">
       <div className="flex lg:flex-row flex-col gap-5">
@@ -9,8 +9,7 @@ const Clients = () => {
           <div className="flex flex-col justify-between items-center gap-4">
             {IconQuote}
             <p className="text-center text-gray-800 dark:text-white lg:text-2xl font-medium ">
-              Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun
-              keng ko&apos;lamli xizmatlarni taqdim etamiz.
+              {t("p1_text9")}
             </p>
             <div className="flex flex-col  gap-4 justify-between items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -30,8 +29,7 @@ const Clients = () => {
           <div className="flex flex-col justify-between items-center gap-4">
             {IconQuote}
             <p className="text-center text-gray-800 dark:text-white lg:text-2xl font-medium ">
-              Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun
-              keng ko&apos;lamli xizmatlarni taqdim etamiz.
+              {t("p1_text9")}
             </p>
             <div className="flex flex-col gap-4 justify-between items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}

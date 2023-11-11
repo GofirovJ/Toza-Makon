@@ -1,6 +1,6 @@
 import React from "react";
 
-const Companies = () => {
+const Companies = ({ t }) => {
   return (
     <div className="container mx-auto lg:px-28 px-4 sm:py-4 xl:my-10">
       <div className="flex items-center flex-wrap justify-between">

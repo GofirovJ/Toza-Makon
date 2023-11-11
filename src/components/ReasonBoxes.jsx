@@ -1,28 +1,25 @@
 import React from "react";
 import { IconItem1, IconItem2, IconItem3 } from "./icons";
 
-const ReasonBoxes = () => {
+const ReasonBoxes = ({ t }) => {
   const reasons = [
     {
       id: 1,
       svg: IconItem1,
-      title: "Tozalikdan rohatlanish",
-      description:
-        "Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz.",
+      title: t("p1_text15"),
+      description: t("p1_text9"),
     },
     {
       id: 2,
       svg: IconItem2,
-      title: "Professionallik",
-      description:
-        "Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz.",
+      title: t("p1_text16"),
+      description: t("p1_text9"),
     },
     {
       id: 3,
       svg: IconItem3,
-      title: "Mutaxassislar xizmati",
-      description:
-        "Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz.",
+      title: t("p1_text17"),
+      description: t("p1_text9"),
     },
   ];
   return (

@@ -10,7 +10,11 @@ import {
 } from "./icons";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { useTranslation } from "next-i18next";
+
 const Navbar = () => {
+  const { t } = useTranslation();
+
   const [isOpen, setIsOpen] = useState(false);
   const [drop, setDrop] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -23,7 +27,7 @@ const Navbar = () => {
     <nav>
       <div className="bg-c-text">
         <div className="container mx-auto 2xl:px-20 xl:px-10 lg:block hidden">
-          <NavItem />
+          <NavItem t={t} />
         </div>
       </div>
       <div className="bg-white dark:bg-darkb container flex items-center justify-between mx-auto py-6 2xl:px-20 xl:px-10 px-4">
@@ -34,33 +38,33 @@ const Navbar = () => {
         >
           <span className="dark:hidden">{IconLogo}</span>
           <span className="dark:block hidden">{IconLogoDark}</span>
-          <h3 className="text-base text-3xl font-bold">Toza Makon</h3>
+          <h3 className="text-base text-3xl font-bold">{t("p1_text53")}</h3>
         </Link>
         <div className="lg:flex hidden flex-1 justify-center gap-6 text-c-text text-lg font-semibold dark:text-white">
           <div
             onClick={() => setDrop(!drop)}
             className="cursor-pointer flex items-center gap-2 relative"
           >
-            Xizmatlar
+            {t("p1_text3")}
             <span className={`${drop && `rotate-180 `} dark:text-white`}>
               {IconArrowDown}
             </span>
             {drop && (
               <div className="w-44 px-4 absolute right-0 top-[130%] flex flex-col gap-2 bg-white dark:bg-darkb dark:text-white border border-gray-200 rounded-2xl py-2">
                 <Link onClick={() => setDrop(false)} href="/services/cleaning">
-                  Tozalash
+                  {t("p1_text54")}
                 </Link>
                 <Link onClick={() => setDrop(false)} href="/services/other">
-                  Boshqa xizmatlar
+                  {t("p1_text55")}
                 </Link>
               </div>
             )}
           </div>
           <Link href="/blog" onClick={() => setDrop(false)}>
-            Blog
+            {t("p1_text53")}
           </Link>
           <Link href="/about-us" onClick={() => setDrop(false)}>
-            Biz haqimizda
+            {t("p1_text5")}
           </Link>
         </div>
         <div className="lg:flex hidden items-center gap-5">
@@ -84,7 +88,7 @@ const Navbar = () => {
             type="button"
             className="flex items-center justify-center rounded-xl text-white bg-base px-5 py-3 shadow-[0_5px_15px_rgb(0,0,0)] active:shadow-[0_5px_20px_rgb(0,0,0)] shadow-[rgba(15,195,109,0.5)] active:shadow-base  font-semibold transition-all duration-200"
           >
-            Ilovamizni sinab ko’ring
+            {t("p1_text6")}
           </Link>
         </div>
         <button
@@ -108,24 +112,24 @@ const Navbar = () => {
           onClick={() => setDrop(!drop)}
           className="flex items-center gap-2 relative"
         >
-          Xizmatlar{" "}
+          {t("p1_text3")}
           <span className={`${drop && `rotate-180 `}`}>{IconArrowDown}</span>
         </div>
         {drop && (
           <div className=" flex flex-col gap-2">
             <Link onClick={handleClose} href="/services/cleaning">
-              Tozalash
+              {t("p1_text54")}
             </Link>
             <Link onClick={handleClose} href="/services/other">
-              Boshqa
+              {t("p1_text55")}
             </Link>
           </div>
         )}
         <Link href="/blog" onClick={() => setIsOpen(false)}>
-          Blog
+          {t("p1_text53")}
         </Link>
         <Link href="/about-us" onClick={() => setIsOpen(false)}>
-          Biz haqimizda
+          {t("p1_text5")}
         </Link>
         <div className="flex items-center justify-between mt-2 gap-5">
           <button
@@ -149,7 +153,7 @@ const Navbar = () => {
             type="button"
             className="flex items-center justify-center rounded-xl text-sm text-white bg-base px-4 py-3 shadow-[0_5px_15px_rgb(0,0,0)] active:shadow-[0_5px_20px_rgb(0,0,0)] shadow-base active:shadow-base  font-semibold transition-all duration-200"
           >
-            Ilovamizni sinab ko’ring
+            {t("p1_text6")}
           </Link>
         </div>
       </div>

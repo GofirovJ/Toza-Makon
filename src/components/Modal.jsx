@@ -4,7 +4,7 @@ import axios from "axios";
 import { serviceId } from "@/store/storeSlice";
 import { useDispatch, useSelector } from "react-redux";
 
-const Modal = ({ setIsOpenModal }) => {
+const Modal = ({ t, setIsOpenModal }) => {
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");
@@ -49,12 +49,10 @@ const Modal = ({ setIsOpenModal }) => {
             {IconCloseDark}
           </button>
           <h3 className="text-gray-800 text-2xl font-semibold ">
-            {id ? "Batafsil ma'lumot" : "Aloqa ma'lumotlari"}
+            {id ? t("p1_text19") : t("p1_text52")}
           </h3>
           <p className=" text-zinc-500 font-normal my-4 ">
-            {id
-              ? "Batafsil ma'lumot olish uchun quyida so’ralgan ma’lumotlarni bizga jo’nating"
-              : "Aloqaga chiqishimiz uchun quyida so’ralgan ma’lumotlarni bizga jo’nating"}
+            {id ? t("p1_text47") : t("p1_text30")}
           </p>
           <label
             htmlFor="name"
@@ -67,7 +65,7 @@ const Modal = ({ setIsOpenModal }) => {
               id="name"
               className="bg-transparent flex-1 outline-none h-full"
               type="text"
-              placeholder="Ismingiz"
+              placeholder={t("p1_text31")}
             />
           </label>
           <label
@@ -81,12 +79,12 @@ const Modal = ({ setIsOpenModal }) => {
               id="phone"
               className="bg-transparent flex-1 outline-none h-full"
               type="text"
-              placeholder="Telefon raqamingiz"
+              placeholder={t("p1_text32")}
             />
           </label>
           {msg && (
             <p className="text-base font-medium text-center pb-4">
-              Ma&apos;lumotlar Qabul qilindi
+              {t("p1_text48")}
             </p>
           )}
           <button
@@ -99,7 +97,7 @@ const Modal = ({ setIsOpenModal }) => {
                 : `cursor-not-allowed opacity-30`
             } w-full flex items-center justify-center rounded-xl text-white bg-base text-sm lg:px-5 px-4 lg:py-3 py-2.5 shadow-[0_5px_15px_rgb(0,0,0)]  shadow-[rgba(15,195,109,0.5)] font-semibold transition-all duration-200`}
           >
-            Yuborish
+            {t("p1_text33")}
           </button>
         </div>
       </div>

@@ -2,17 +2,16 @@ import React from "react";
 import { IconAppStore, IconPlayMarket } from "./icons";
 import Link from "next/link";
 
-const PhoneBanner = () => {
+const PhoneBanner = ({ t }) => {
   return (
     <div id="app" className="container mx-auto lg:p-28 px-4 py-4 xl:my-10">
       <div className="bg-primary rounded-[32px] lg:py-14 py-6 lg:px-28 px-10 relative">
-        <p className="text-base lg:!text-2xl font-semibold ">Biz siz uchun</p>
+        <p className="text-base lg:!text-2xl font-semibold ">{t("p1_text7")}</p>
         <h2 className="text-gray-800 xl:text-[40px] lg:text-3xl text-lg font-bold my-2">
-          Ilovamizdan foydalanib ko’ring!
+          {t("p1_text20")}
         </h2>
         <p className="xl:w-[45%] text-zinc-500 font-medium lg:text-[16px] text-sm">
-          Ilovamizni hoziroq yuklab oling va u orqali xizmatlarimizdan tez va
-          oson foydalaning.{" "}
+          {t("p1_text21")}
         </p>
         <div className="sm:flex flex-wrap gap-4 mt-10">
           <Link

@@ -1,6 +1,6 @@
 import React from "react";
 
-const BaseText = ({ base, heading, description, usedFooter }) => {
+const BaseText = ({ t, base, heading, description, usedFooter }) => {
   return (
     <div
       className={`container mx-auto ${

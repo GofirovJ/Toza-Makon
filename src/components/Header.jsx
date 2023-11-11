@@ -4,6 +4,7 @@ import Link from "next/link";
 import { IconArrowRight } from "./icons";
 
 const Header = ({
+  t,
   mainText,
   heading,
   title,
@@ -19,15 +20,15 @@ const Header = ({
         <div className="lg:block hidden container mx-auto 2xl:px-20 xl:px-10 pt-10 px-4">
           <div className="flex gap-2">
             <Link href="/" className="opacity-50 text-black font-semibold ">
-              Bosh Sahifa
+              {t("p1_text41")}
             </Link>
             {IconArrowRight}
             <p className="text-gray-800 font-semibold">
               {breadCrumb === "/service/cleaning"
-                ? "Xizmatlar"
+                ? t("p1_text3")
                 : breadCrumb === "/blog"
-                ? "Blog"
-                : "Biz haqimizda"}
+                ? t("p1_text49")
+                : t("p1_text4")}
             </p>
           </div>
         </div>
@@ -37,6 +38,7 @@ const Header = ({
           className={`container mx-auto 2xl:px-20 xl:px-10 lg:py-28 py-8 px-4  bg-[url('/head.png')] bg-no-repeat lg:bg-right bg-center bg-contain`}
         >
           <RenderComponent
+            t={t}
             mainText={mainText}
             heading={heading}
             title={title}
@@ -50,6 +52,7 @@ const Header = ({
           className={`container mx-auto 2xl:px-20 xl:px-10 lg:py-28 py-8 px-4 lg:flex justify-between items-center`}
         >
           <RenderComponent
+            t={t}
             mainText={mainText}
             heading={heading}
             title={title}
@@ -74,6 +77,7 @@ const Header = ({
 export default Header;
 
 const RenderComponent = ({
+  t,
   mainText,
   heading,
   title,
@@ -112,24 +116,24 @@ const RenderComponent = ({
             {statistics?.[1].title}
           </p>
           <p className="text-base lg:!text-[32px] font-bold mt-4">
-            {statistics?.[1].value} yil
+            {statistics?.[1].value} {t("p1_text50")}
           </p>
         </div>
       </div>
     ) : service ? (
       <div className="flex gap-6 mt-10">
-        <OpenModalButton text="Buyurtma qilish" />
-        <OpenModalButton text="Konsultatsiya olish" color="none" />
+        <OpenModalButton t={t} text={t("p1_text27")} />
+        <OpenModalButton t={t} text={t("p1_text36")} color="none" />
       </div>
     ) : (
       <div className="flex gap-6 mt-10">
-        <OpenModalButton text="Bog’lanish" />
+        <OpenModalButton t={t} text={t("p1_text10")} />
         <Link
           href={"/services/cleaning"}
           type="button"
           className="dark:text-darkb cursor-pointer flex items-center justify-center rounded-xl border border-base text-sm bg-primary lg:px-5 px-4 lg:py-3 py-2.5   font-semibold transition-all duration-200"
         >
-          Bizning xizmatlar
+          {t("p1_text11")}
         </Link>
       </div>
     )}

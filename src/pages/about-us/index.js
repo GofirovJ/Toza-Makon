@@ -7,52 +7,66 @@ import {
   ReasonBoxes,
 } from "../../components";
 import React from "react";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+}
 const AboutUs = () => {
+  const { t } = useTranslation();
+
   return (
     <main>
       <Header
-        mainText="Toza Makon"
-        heading="Biz haqimizda"
-        title="Biz sizning uyingiz va ofisingiz tozaligi va farovonligi uchun keng ko'lamli xizmatlarni taqdim etamiz."
+        t={t}
+        mainText={t("p1_text53")}
+        heading={t("p1_text5")}
+        title={t("p1_text9")}
         video={true}
         service={false}
         videoSource="https://www.youtube.com/embed/pTcQTifb6lI?si=yJFiMA6qwaA_jUJH"
         statistics={[
           {
-            title: "Mijozlarimiz",
+            title: t("p1_text43"),
             value: 2000,
           },
           {
-            title: "Ish tajribamiz",
+            title: t("p1_text44"),
             value: 10,
           },
         ]}
         breadCrumb="/about-us"
       />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Nima uchun"
-        heading="Bizni tanlashingiz shart"
-        description="Xizmatlarimizdan foydalanishda quyidagi qulayliklarga va imkoniyatlarga
-        ega bo’lasiz"
+        base={t("p1_text12")}
+        heading={t("p1_text13")}
+        description={t("p1_text14")}
       />
-      <ReasonBoxes />
-      <PhoneBanner />
+      <ReasonBoxes t={t} />
+      <PhoneBanner t={t} />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Biz haqimizda"
-        heading="Mijozlar nima deydi"
+        base={t("p1_text5")}
+        heading={t("p1_text22")}
         description=""
       />
-      <Clients />
+      <Clients t={t} />
       <BaseText
+        t={t}
         usedFooter={false}
-        base="Biz bilan ishlovchi"
-        heading="Hamkor kompaniyalar"
+        base={t("p1_text23")}
+        heading={t("p1_text24")}
         description=""
       />
-      <Companies />
+      <Companies t={t} />
     </main>
   );
 };
